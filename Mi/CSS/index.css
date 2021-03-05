@@ -33,6 +33,7 @@
 .app-wrapper:hover .app::after,
 .app-wrapper:hover .app .qrcode{
     display: block;
+    height: 148px;
 
 }
 
@@ -53,9 +54,9 @@
 }
 
 .app .qrcode{
-    display: none;
     width: 124px;
-    height: 148px;
+    height: 0;
+    overflow: hidden;
     line-height: 1;
     text-align: center;
     background-color: #fff;
@@ -63,6 +64,7 @@
     position: absolute;
     top: 40px;
     left: -40px;
+    transition: height 0.4s;
 }
 
 .app .qrcode img{
@@ -82,6 +84,7 @@
 
 .shop-cart{
     margin-left: 26px;
+    position: relative;
 }
 
 .shop-cart a{
@@ -97,4 +100,17 @@
 
 .shop-cart i{
     margin-right: 2px;
+}
+
+.shop-cart-list{
+    width: 316px;
+    height: 0;
+    position: absolute;
+    box-shadow: 0 0 10px rgba(0,0,0, 0.3);
+    right: 0;
+    transition: height 0.3s;
+}
+
+.shop-cart:hover .shop-cart-list{
+    height: 120px;
 }
