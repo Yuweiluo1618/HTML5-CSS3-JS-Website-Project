@@ -1,3 +1,4 @@
+/* topbar */
 .topbar-wrapper{
     width: 100%;
     background-color: #333;
@@ -123,3 +124,62 @@
 .user-info li{
     float: left;
 }
+
+
+/* Header */
+.header-wrapper{
+    width: 100%;
+}
+
+.header{
+    height: 100px;
+   
+}
+
+.header .logo{
+    width: 55px;
+    height: 55px;
+    float: left;
+    position: relative;
+    overflow: hidden;
+    margin: 22.5px 0;
+    text-indent: -9999px;
+}
+
+.header .logo .mi{
+    width: 55px;
+    height: 55px;
+    background-color: #ff6700;
+    background-image: url("../img/mi-logo.png");
+    background-position: center;
+    position: absolute;
+    left: 0;
+    transition: left 0.3s;
+}
+
+.header .logo .home{
+    width: 55px;
+    height: 55px;
+    background-color: #ff6700;
+    background-image: url("../img/mi-home.png");
+    background-position: center;
+    position: absolute;
+    left: -55px;
+    transition: left 0.3s;
+}
+
+.logo:hover .mi{
+    left: 55px;
+}
+
+.logo:hover .home{
+    left: 0px;
+}
+
+
+
+
+
+
+
+

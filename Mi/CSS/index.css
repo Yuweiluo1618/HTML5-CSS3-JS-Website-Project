@@ -1,3 +1,4 @@
+/* topbar */
 .topbar-wrapper{
     width: 100%;
     height: 40px;
@@ -113,4 +114,44 @@
 
 .shop-cart:hover .shop-cart-list{
     height: 120px;
+}
+
+
+/* header */
+.header{
+    height: 100px;
+}
+
+.header .logo{
+    float: left;
+    margin: 22.5px 0;
+    width: 55px;
+    height: 55px;
+    position: relative;
+    overflow: hidden;
+    text-indent: -9999px;
+}
+
+.header .logo a{
+    position: absolute;
+    left: 0;
+    width: 55px;
+    height: 55px;
+    background: #ff6700;
+    background-image: url(../img/mi-logo.png);
+    background-position: center center;
+    transition: left 0.3s;
+}
+
+.header .logo .home{
+    background-image: url(../img/mi-home.png);
+    left: -55px;
+}
+
+.header .logo:hover .mi{
+    left: 55px;
+}
+
+.header .logo:hover .home{
+    left: 0;
 }
