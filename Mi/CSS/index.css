@@ -118,6 +118,10 @@
 
 
 /* header */
+.header-wrapper{
+    position: relative;
+}
+
 .header{
     height: 100px;
 }
@@ -154,4 +158,56 @@
 
 .header .logo:hover .home{
     left: 0;
+}
+
+
+.header .navi-wrapper{
+    float: left;
+    margin-left: 7px;
+}
+
+.header .nav{
+    width: 792px;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 58px;
+}
+
+.navi-wrapper li{
+    float: left;
+}
+
+.navi-wrapper li a{
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.navi-wrapper li a:hover{
+    display: block;
+    color: #ff6700;
+}
+
+.all-goods{
+    visibility: hidden;
+}
+
+.nav .goods-info{
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    background-color: #fff;
+    position: absolute;
+    left: 0;
+    top: 100px;
+    box-shadow: 0 2px 1px rgba(0, 0, 0, 0.3);
+    transition: height 0.3s;
+    z-index: 9999;
+    
+}
+
+.nav .show-goods:hover~.goods-info,
+.nav .goods-info:hover{
+    height: 228px;
+    border-top: 1px solid rgb(224, 224, 224);
+    
 }

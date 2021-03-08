@@ -55,6 +55,7 @@
 .app .qrcode{
     width: 124px;
     height: 0;
+    background-color: #fff;
     overflow: hidden;
     line-height: 1;
     text-align: center;
@@ -63,6 +64,7 @@
     left: -40px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
     transition: height 0.3s;
+    z-index: 9999;
 }
 
 .app .qrcode img{
@@ -127,8 +129,11 @@
 
 
 /* Header */
+/* logo */
 .header-wrapper{
     width: 100%;
+    position: relative;
+
 }
 
 .header{
@@ -175,6 +180,69 @@
 .logo:hover .home{
     left: 0px;
 }
+
+/* mid-navi */
+.navi-wrapper{
+    float: left;
+    margin-left: 7px;
+}
+
+.navi-wrapper .nav{
+    width: 792px;
+    height: 100px;
+    line-height: 100px;
+    padding-left: 58px;
+}
+
+.navi-wrapper .nav li{
+    float: left;
+}
+
+.navi-wrapper .nav li a{
+    display: block;
+    font-size: 16px;
+    margin-right: 20px;
+}
+
+.all-goods{
+    visibility: hidden;;
+}
+
+.navi-wrapper .nav li:not(:first-child):hover a{
+    color: #ff6700;
+}
+
+.goods-info{
+    width: 100%;
+    background-color: #fff;
+    height: 0;
+    position: absolute;
+    box-shadow: 0 3px 2px rgba(0, 0, 0, 0.3);
+    top: 100px;
+    left: 0;
+    transition: height 0.3s;
+    z-index: 9999;
+}
+
+.nav .show-goods:hover ~ .goods-info,
+.nav .goods-info:hover{
+    height: 230px;
+    border-top: 1px solid rgb(224, 224, 224);
+    
+}
+
+.search-wrapper{
+    width: 296px;
+    height: 50px;
+    float: left;
+    line-height: 100px;
+    background-color: #bfa;
+}
+
+
+
+
+
 
 
 
