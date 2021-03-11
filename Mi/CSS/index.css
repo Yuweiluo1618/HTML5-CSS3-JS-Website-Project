@@ -292,3 +292,67 @@
     border: none;
 }
 
+.banner{
+    width: 1226px;
+    height: 460px;
+    position: relative;
+}
+
+.img-list img{
+    width: 100%;
+    vertical-align: top;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+
+.pointer{
+    position: absolute;
+    right: 35px;
+    bottom: 22px;
+}
+
+.pointer a{
+    float: left;
+    width: 6px;
+    height: 6px;
+    background-color: rgba(0, 0, 0, 0.4);
+    border: 2px solid rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.pointer a:hover,
+.pointer .active{
+    background-color: rgba(255, 255, 255, 0.4);
+    border-color: rgba(0, 0, 0, 0.4);
+}
+
+.prev-next a{
+    position: absolute;
+    width: 41px;
+    height: 69px;
+    background-image: url("../img/Icon/icon-slides.png");
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+}
+
+.prev{
+    left: 234px;
+    background-position: -83px 0;
+
+}
+
+.next{
+    right: 0;
+    background-position: -128px 0;
+}
+
+.prev:hover{
+    background-position: 0 0 ;
+}
+
+.next:hover{
+    background-position: -42px 0;
+}
