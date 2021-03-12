@@ -418,6 +418,120 @@
     background-position: -42px 0;
 }
 
+/* right-bar */
+.back-top{
+    height: 205px;
+    width: 25px;
+    position: fixed;
+    bottom: 200px;
+    right: 50%;
+    margin-right: -639px;
+    z-index: 9999;
+
+}
+
+.back-top ul li{
+    text-align: center;
+    font-size: 20px;
+    height: 41px;
+   
+}
+
+.back-top ul li:hover i{
+    color: #ff6700;
+}
+
+.back-top .right-bar-list{
+    display: none;
+    width: 130px;
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    position: absolute;
+    top: 0;
+    left: -140px;
+    
+}
+
+.back-top .right-bar-list::before{
+    content: "";
+    width: 0;
+    height: 0;
+    border: 8px solid transparent;
+    border-right: none;
+    border-left-color: #fff;
+    position: absolute;
+    right: -8px;
+    top:10px
+}
+
+
+.back-top .right-bar-list img{
+    width: 90px;
+    vertical-align: top;
+    margin: 20px 0 10px;
+}
+
+.back-top .right-bar-list span{
+    display: block;
+}
+
+
+.back-top .right-bar-list-wrapper:hover .right-bar-list{
+    display: block;
+}
+
+
+/* bottom-section */
+.ad{
+    margin-top: 14px;
+}
+
+.ad ul{
+    float: left;
+}
+
+.ad ul li{
+    float: left;
+}
+
+.ad .shortcut{
+    width: 234px;
+    height: 170px;
+    background-color: #5f5750;
+}
+
+.ad .shortcut li{
+    width: 76px;
+    height: 84px;
+    text-align: center;
+}
+
+.ad .shortcut a{
+    display: block;
+    width: 64px;
+    height: 70px;
+    color: #cfccca;
+    margin: 20px 6px;
+}
+
+.ad .shortcut i{
+    display: block;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.ad .ad-img {
+    margin-left: 14px;
+}
+
+.ad .ad-img li:not(:last-child){
+    margin-right: 15px;
+}
+
+.ad .ad-img img{
+    width: 316px;
+    vertical-align: middle;
+}
 
 
 

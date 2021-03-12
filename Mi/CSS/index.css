@@ -356,3 +356,23 @@
 .next:hover{
     background-position: -42px 0;
 }
+
+.back-top{
+    width: 26px;
+    height: 206px;
+    position: absolute;
+    right: 50%;
+    margin-right: -639px;
+    bottom: 200px;
+
+}
+
+.back-top ul li{
+    text-align: center;
+    font-size: 20px;
+    height: 41px;
+}
+
+.back-top ul li:hover i{
+    color: #ff6700;
+}
