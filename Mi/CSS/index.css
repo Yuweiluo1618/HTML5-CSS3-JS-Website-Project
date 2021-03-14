@@ -376,3 +376,84 @@
 .back-top ul li:hover i{
     color: #ff6700;
 }
+
+.ad{
+    margin-top: 14px;
+}
+
+.ad ul{
+    float: left;
+}
+
+.ad ul li{
+    float: left;
+}
+
+.ad .shortcut{
+    width: 228px;
+    height: 168px;
+    background-color: #5f5750;
+    margin-right: 14PX;
+    padding-top: 2px;
+    padding-left: 6px;
+}
+
+.ad .shortcut li{
+    width: 76px;
+    height: 84px;
+    text-align: center;
+    position: relative;
+    
+}
+
+.ad .shortcut li::before{
+    content: "";
+    width: 50px;
+    height: 1px;
+    background-color: #665e57;
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+}
+
+.ad .shortcut li::after{
+    content: "";
+    width: 1px;
+    height: 50px;
+    background-color: #665e57;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin: auto 0;
+    left: 0;
+}
+
+.ad .shortcut li a{
+    display: block;
+    color: #CFCCCA;
+}
+
+.ad .shortcut li:hover a{
+    color: #fff;
+}
+
+.ad .shortcut i{
+    display: block;
+    margin: 20px;
+    font-size: 20px;
+}
+
+
+.ad .ad-img li{
+    width: 315px;
+    margin-right: 15px;
+}
+
+.ad .ad-img li:last-child{
+    margin-right: 0;
+}
+
+.ad .ad-img li img{
+    width: 100%;
+}
