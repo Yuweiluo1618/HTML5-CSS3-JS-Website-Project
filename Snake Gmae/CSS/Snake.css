@@ -1,0 +1,64 @@
+#game{
+    width: 340px;
+    height: 400px;
+    background-color: #B7D4A8;
+    border: 10px #000 solid;
+    border-radius: 10%;
+    margin: 0 auto;
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+}
+
+
+
+#stage{
+    width: 300px;
+    height: 300px;
+    border: 2px #000 solid;
+    position: relative;
+}
+
+#snake > div{
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    background-color: #000;
+    position: absolute;
+    border: 1px #B7D4A8 solid;
+
+}
+
+#food{
+    box-sizing: border-box;
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    display: flex;
+    flex-flow: row wrap;
+
+}
+
+#food > div{
+    width: 50%;
+    height: 50%;
+    background-color: #000;
+    transform: rotate(45deg);
+    border-radius: 30%;
+    
+}
+
+
+
+#score-level{
+    width: 304px;
+    display: flex;
+    justify-content: space-between;
+    font: bold 20px "Courier";
+    margin: 0 auto;
+
+}
