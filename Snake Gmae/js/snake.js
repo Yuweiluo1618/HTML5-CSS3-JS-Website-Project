@@ -28,24 +28,6 @@ window.onload = function(){
             var snake_body = document.createElement("div");
             snake.appendChild(snake_body);
             add_score();
-            switch(dir){
-                case "ArrowUp":
-                    snake.children[snake.children.length-1].style.top = snake.children[snake.children.length-2].offsetTop+10+"px";
-                    snake.children[snake.children.length-1].style.left = snake.children[snake.children.length-2].offsetLeft+"px";
-                    break;
-                case "ArrowDown":
-                    snake.children[snake.children.length-1].style.top = snake.children[snake.children.length-2].offsetTop-10+"px";
-                    snake.children[snake.children.length-1].style.left = snake.children[snake.children.length-2].offsetLeft+"px";
-                    break;
-                case "ArrowLeft":
-                    snake.children[snake.children.length-1].style.top = snake.children[snake.children.length-2].offsetTop+"px";
-                    snake.children[snake.children.length-1].style.left = snake.children[snake.children.length-2].offsetLeft+10+"px";
-                    break;
-                case "ArrowRight":
-                    snake.children[snake.children.length-1].style.top = snake.children[snake.children.length-2].offsetTop+"px";
-                    snake.children[snake.children.length-1].style.left = snake.children[snake.children.length-2].offsetLeft-10+"px";
-                    break;
-            }
         }
     }
 
@@ -95,7 +77,7 @@ window.onload = function(){
                     break;
     
     }
-   }, 30);
+   }, 100);
 
 
     document.addEventListener("keydown", function(event){
