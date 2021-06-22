@@ -84,16 +84,16 @@ window.addEventListener("load", function(){
 
 
         for(i = snakeBody.length-1; i > 0; i--){
-            var bodyTop = snakeBody[i].offsetTop;
-            var bodyLeft = snakeBody[i].offsetLeft;
+            var bodyTop = snakeBody[i-1].offsetTop;
+            var bodyLeft = snakeBody[i-1].offsetLeft;
             
             if(bodyTop == top && bodyLeft == left){
                 alert("Game Over!");
                 return;
             }
 
-            snakeBody[i].style.top = snakeBody[i-1].offsetTop+"px";
-            snakeBody[i].style.left = snakeBody[i-1].offsetLeft+"px";
+            snakeBody[i].style.top = bodyTop+"px";
+            snakeBody[i].style.left = bodyLeft+"px";
         }
 
         snakeBody[0].style.top = top +"px";
