@@ -1,4 +1,5 @@
 const router = require('express').Router();
+const handleDB = require('../db/handleDB');
 
 router.all("/", (req, res)=>{
     if(req.method === "GET"){
@@ -25,6 +26,13 @@ router.get('/get_session', (req, res) => {
     // console.log(req.session["age"]);
     res.send(req.session["age"]+ " ");
     
+});
+
+router.get('/get_data', (req, res) => {
+	(async ()=>{
+        let result = await handleDB(res, "info_category", "find", "search error");
+        res.send(result);
+    })();
 });
 
 module.exports = router;
