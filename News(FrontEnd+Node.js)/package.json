@@ -1,5 +1,5 @@
 {
-  "name": "News",
+  "name": "news",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -9,6 +9,10 @@
     "cookie-session": "^1.4.0",
     "express": "^4.17.1",
     "express-art-template": "^1.0.1",
+    "js-base64": "^3.6.1",
+    "jsonwebtoken": "^8.5.1",
+    "md5": "^2.3.0",
+    "moment": "^2.29.1",
     "mysql": "^2.18.1",
     "svg-captcha": "^1.4.0"
   }

@@ -1,38 +1,65 @@
 const router = require('express').Router();
 const handleDB = require('../db/handleDB');
 
-router.all("/", (req, res)=>{
-    if(req.method === "GET"){
-        res.render('news/index')
-    }
+router.get("/", (req, res)=>{
+        (async function(){
+            let user_id = req.session["user_id"];
+            let search_res = [];
+
+            if(user_id){
+                search_res = await handleDB(res, "info_user", "find", "database search error", `id = ${user_id}`);
+            }
+
+            let search_cate = await handleDB(res, "info_category", "find", "database searcch error");
+
+            let search__click =  await handleDB(res, "info_news", "sql", "database search error", "select * from info_news order by clicks desc limit 6");
+            
+
+            let data = {
+                
+                user_info: search_res[0]?{
+                    nick_name: search_res[0].nick_name,
+                    avatar_url: search_res[0].avatar_url
+                }:false,
+                
+                category: search_cate,
+                newsClicks: search__click
+
+            }
+            
+            res.render('news/index', data);
+        })(); 
 });
 
-router.get('/set_cookie', (req, res) => {
-    res.cookie("name", "Node.js")
-    res.send("set cookie")
-});
-
-router.get('/get_cookie', (req, res) => {
-    res.send(req.cookies["name"]);	
-});
-
-router.get('/set_session', (req, res) => {
-    req.session["age"] = 38;
-    res.send("set session"); 
+router.get('/news_list', (req, res) => {
     
-});
+    (async function(){
+        
+        let {cid = 1, page = 1, per_page = 5} = req.query;
+        let wh = cid == 1? `1`:`category_id = ${cid}`;
+        let search_res = await handleDB(res, "info_news", "limit", "database search error", {
+            where: `${wh} order by create_time desc`,
+            number: page,
+            count: per_page
+        })
 
-router.get('/get_session', (req, res) => {
-    // console.log(req.session["age"]);
-    res.send(req.session["age"]+ " ");
-    
-});
+        let total_page_res = await handleDB(res, "info_news", "sql", "database search error", `select count(*) from info_news where ${wh}`);
+        // console.log(typeof page);
+        let totalPage = total_page_res[0]['count(*)'];
+        // console.log(typeof total_page);
+        
 
-router.get('/get_data', (req, res) => {
-	(async ()=>{
-        let result = await handleDB(res, "info_category", "find", "search error");
-        res.send(result);
+
+        res.send({
+            newsList: search_res,
+            totalPage,
+            currentPage: Number(page)
+        })
+
     })();
+ 
+
+
 });
 
 module.exports = router;

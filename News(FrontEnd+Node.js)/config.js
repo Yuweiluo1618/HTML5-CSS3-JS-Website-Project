@@ -3,9 +3,12 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
 const cookieSession = require('cookie-session');
+const common = require('./utils//common');
+const keys = require("./keys");
 
 const generalRouter = require("./router/generalRouter");
 const passportRouter = require('./router/passport');
+const testRouter = require('./router/test');
 
 class Appconfig{
     constructor(app){
@@ -25,13 +28,14 @@ class Appconfig{
         this.app.use(cookieParser());
         this.app.use(cookieSession({
             name:"my_session",
-            keys:["%$#^&^%&TSFR#$TRGDRG$%GFDG%^$#%#^GFDGRDHG$#@^Y%"],
+            keys:[keys.session_key],
             maxAge:1000*60*60*24*2   
         }));
 
         
-        this.app.use(generalRouter);
-        this.app.use(passportRouter);
+        this.app.use(common.csrfProtect, generalRouter);
+        this.app.use(common.csrfProtect, passportRouter);
+        this.app.use(common.csrfProtect, testRouter);
 
     }
 }
