@@ -1,14 +1,11 @@
 const router = require('express').Router();
+const commen = require('../utils/common');
 const handleDB = require('../db/handleDB');
 
 router.get("/", (req, res)=>{
         (async function(){
-            let user_id = req.session["user_id"];
-            let search_res = [];
-
-            if(user_id){
-                search_res = await handleDB(res, "info_user", "find", "database search error", `id = ${user_id}`);
-            }
+        
+            let user_info = await commen.getUser(req, res);
 
             let search_cate = await handleDB(res, "info_category", "find", "database searcch error");
 
@@ -17,9 +14,9 @@ router.get("/", (req, res)=>{
 
             let data = {
                 
-                user_info: search_res[0]?{
-                    nick_name: search_res[0].nick_name,
-                    avatar_url: search_res[0].avatar_url
+                user_info: user_info[0]?{
+                    nick_name: user_info[0].nick_name,
+                    avatar_url: user_info[0].avatar_url
                 }:false,
                 
                 category: search_cate,
@@ -45,7 +42,7 @@ router.get('/news_list', (req, res) => {
 
         let total_page_res = await handleDB(res, "info_news", "sql", "database search error", `select count(*) from info_news where ${wh}`);
         // console.log(typeof page);
-        let totalPage = total_page_res[0]['count(*)'];
+        let totalPage = Math.ceil(total_page_res[0]['count(*)']/per_page);
         // console.log(typeof total_page);
         
 

@@ -1,3 +1,5 @@
+const handleDB =  require('../db/handleDB');
+
 
 function getRandomString(n){
     var str="";
@@ -22,6 +24,32 @@ function csrfProtect(req, res, next){
     next();
 }
 
+async function getUser(req, res){
+    
+    let user_id = req.session["user_id"];
+    let search_res = [];
+
+    if (user_id) {
+        search_res = await handleDB(res, "info_user", "find", "database search error", `id = ${user_id}`);
+    }
+
+    return search_res;
+
+}
+
+async function abort404(req, res){
+    let user_info = await getUser(req, res);
+    let data = {
+        user_info: user_info[0] ? {
+            nick_name: user_info[0].nick_name,
+            avatar_url: user_info[0].avatar_url
+        } : false
+    }
+    res.render("news/404", data);
+}
+
 module.exports = {
-    csrfProtect
+    csrfProtect,
+    getUser,
+    abort404
 }

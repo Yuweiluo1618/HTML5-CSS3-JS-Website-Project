@@ -8,6 +8,7 @@ const keys = require("./keys");
 
 const generalRouter = require("./router/generalRouter");
 const passportRouter = require('./router/passport');
+const detailRouter = require('./router/detail');
 const testRouter = require('./router/test');
 
 class Appconfig{
@@ -35,7 +36,14 @@ class Appconfig{
         
         this.app.use(common.csrfProtect, generalRouter);
         this.app.use(common.csrfProtect, passportRouter);
+        this.app.use(common.csrfProtect, detailRouter);
         this.app.use(common.csrfProtect, testRouter);
+
+        this.app.use((req, res)=>{
+            
+            common.abort404(req, res);
+            
+        });
 
     }
 }

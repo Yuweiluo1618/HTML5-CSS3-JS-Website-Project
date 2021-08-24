@@ -6,6 +6,7 @@ function getCookie(name) {
 
 $(function(){
 
+    updateCommentCount();
     // 打开登录框
     $('.comment_form_logout').click(function () {
         $('.login_form_con').show();
@@ -13,7 +14,6 @@ $(function(){
 
     // 收藏
     $(".collection").click(function () {
-        /*
         //获取到新闻编号
         var news_id = $(".collection").attr('data-newid');
         var action = "collect"
@@ -43,12 +43,11 @@ $(function(){
                 }
             }
         })
-       */
+       
     })
 
     // 取消收藏
     $(".collected").click(function () {
-      /*
         var news_id = $(".collected").attr('data-newid');
         var action = "cancel_collect"
         var params = {
@@ -77,7 +76,7 @@ $(function(){
                 }
             }
         })
-     */
+     
     })
 
         // 评论提交
@@ -95,7 +94,7 @@ $(function(){
                 "news_id": news_id,
                 "comment": news_comment
             };
-            /*
+            
             $.ajax({
                 url: "/news_detail/news_comment",
                 type: "post",
@@ -114,7 +113,7 @@ $(function(){
                         if (comment.user.avatar_url) {
                             comment_html += '<img src="' + comment.user.avatar_url + '" alt="用户图标">'
                         }else {
-                            comment_html += '<img src="../../static/news/images/person01.png" alt="用户图标">'
+                            comment_html += '<img src="/news/images/person01.png" alt="用户图标">'
                         }
                         comment_html += '</div>'
                         comment_html += '<div class="user_name fl">' + comment.user.nick_name + '</div>'
@@ -146,7 +145,7 @@ $(function(){
                     }
                 }
             })
-*/
+
 
     })
 
@@ -155,6 +154,7 @@ $(function(){
 
         //获取到点击标签的class属性, reply_sub
         var sHandler = $(this).prop('class');
+        
 
         if(sHandler.indexOf('comment_reply')>=0)
         {
@@ -169,7 +169,7 @@ $(function(){
         // 点赞处理
         if(sHandler.indexOf('comment_up')>=0)
         {
-            /*
+            
             var $this = $(this);
             var action = "add"
             if(sHandler.indexOf('has_comment_up')>=0)
@@ -217,9 +217,9 @@ $(function(){
                         // 更新点赞数据,重新赋值回去
                         $this.attr('data-likecount', like_count)
                         if (like_count == 0) {
-                            $this.news("赞")
+                            $this.html("赞")
                         }else {
-                            $this.news(like_count)
+                            $this.html(like_count)
                         }
                     }else if (resp.errno == "4101"){
                         $('.login_form_con').show();
@@ -228,13 +228,12 @@ $(function(){
                     }
                 }
             })
-            */
+            
         }
-
+       
         // 评论回复
         if(sHandler.indexOf('reply_sub')>=0)
         {
-            /*
             var $this = $(this)
             var news_id = $this.parent().attr('data-newsid')
             var parent_id = $this.parent().attr('data-commentid')
@@ -267,7 +266,7 @@ $(function(){
                         if (comment.user.avatar_url) {
                             comment_html += '<img src="' + comment.user.avatar_url + '" alt="用户图标">'
                         }else {
-                            comment_html += '<img src="../../static/news/images/person01.png" alt="用户图标">'
+                            comment_html += '<img src="/news/images/person01.png" alt="用户图标">'
                         }
                         comment_html += '</div>'
                         comment_html += '<div class="user_name fl">' + comment.user.nick_name + '</div>'
@@ -304,7 +303,7 @@ $(function(){
                     }
                 }
             })
-            */
+            
         }
     })
 
