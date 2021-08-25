@@ -57,7 +57,9 @@
             </div>
             {{/if}}
             <div class="comment_time fl">{{$value.create_time | dateFormatFilter}}</div>
-            <a href="javascript:;" class="comment_up fr" data-commentid={{$value.id}} data-likecount={{$value.like_count?$value.like_count:0}}>赞</a>
+            <a href="javascript:;" class="comment_up fr" data-commentid={{$value.id}} data-likecount={{$value.like_count?$value.like_count:0}}>
+                {{$value.like_count?$value.like_count:"赞"}}
+            </a>
             <a href="javascript:;" class="comment_reply fr">回复</a>
             <from class="reply_form fl" data-newsid={{$value.news_id}} data-commentid={{$value.id}}>
                 <textarea  class="reply_input"></textarea>

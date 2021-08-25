@@ -58,6 +58,10 @@ router.get('/news_detail/:news_id', (req, res) => {
             }
         }
 
+        let user_thump_up = await handleDB(res, "info_comment_like", "find", "database search error", `user_id = ${user_info[0].id}`);
+        console.log(user_thump_up);
+        
+
         let data = {
 
             user_info: user_info[0]?{
@@ -67,7 +71,8 @@ router.get('/news_detail/:news_id', (req, res) => {
             newsClicks: search_click,
             newsData: newsResult[0],
             is_collection,
-            commentList: comment_res
+            commentList: comment_res,
+            user_thump_up
         }
 
 
