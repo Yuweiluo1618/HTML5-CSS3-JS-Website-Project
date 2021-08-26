@@ -57,7 +57,7 @@
             </div>
             {{/if}}
             <div class="comment_time fl">{{$value.create_time | dateFormatFilter}}</div>
-            <a href="javascript:;" class="comment_up fr" data-commentid={{$value.id}} data-likecount={{$value.like_count?$value.like_count:0}}>
+            <a href="javascript:;" class="{{comment_id_list.indexOf($value.id)>=0?"has_comment_up":""}} comment_up fr" data-commentid={{$value.id}} data-likecount={{$value.like_count?$value.like_count:0}}>
                 {{$value.like_count?$value.like_count:"赞"}}
             </a>
             <a href="javascript:;" class="comment_reply fr">回复</a>
@@ -153,12 +153,12 @@
 {{/block}}
 {{block 'authorCardBlock'}}
 <div class="author_card">
-    <a href="#" class="author_pic"><img src="/news/images/user_pic.png" alt="author_pic"></a>
-    <a href="#" class="author_name">张大山</a>
-    <div class="author_resume">张大山的简介,张大山</div>
-    <div class="writings"><span>总篇数</span><b>23</b></div>
-    <div class="follows"><span>粉丝</span><b>36</b></div>
-    <a href="javascript:;" class="focus fr">关注</a>
-    <a href="javascript:;" class="focused fr"><span class="out">已关注</span><span class="over">取消关注</span></a>
+    <a href="#" class="author_pic"><img src="{{author_info.avatar_url?author_info.avatar_url:'/news/images/user_pic.png'}}" alt="author_pic"></a>
+    <a href="#" class="author_name">{{author_info.nick_name}}</a>
+    <div class="author_resume">{{author_info.signature}}</div>
+    <div class="writings"><span>总篇数</span><b>{{author_article_count}}</b></div>
+    <div class="follows"><span>粉丝</span><b>{{author_fans_count}}</b></div>
+    <a href="javascript:;" class="focus fr" data-userid={{author_info.id}} style="display: {{is_follow?'none':'block'}}">关注</a>
+    <a href="javascript:;" class="focused fr" data-userid={{author_info.id}} style="display: {{is_follow?'block':'none'}}"><span class="out">已关注</span><span class="over">取消关注</span></a>
 </div>
 {{/block}}

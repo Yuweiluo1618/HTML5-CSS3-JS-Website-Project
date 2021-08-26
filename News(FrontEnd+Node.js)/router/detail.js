@@ -58,9 +58,26 @@ router.get('/news_detail/:news_id', (req, res) => {
             }
         }
 
-        let user_thump_up = await handleDB(res, "info_comment_like", "find", "database search error", `user_id = ${user_info[0].id}`);
-        console.log(user_thump_up);
+        let comment_id_list = [];
+
+        if(user_info[0]){
+            let comment_id_res = await handleDB(res, "info_comment_like", "find", "database search error", `user_id = ${user_info[0].id}`);
+            comment_id_res.forEach(ele => comment_id_list.push(ele.comment_id));
+        }
         
+        //temp use since null in database
+        let author_id = newsResult[0].user_id?newsResult[0].user_id:6;
+        let author_search_res = await handleDB(res, "info_user", "find", "database search error", `id = ${author_id}`);
+        let author_article_count_res = await handleDB(res, "info_news", "sql", "database search error", `select count(*) from info_news where user_id = ${author_search_res[0].id}`);
+        let author_fans_count_res = await handleDB(res, "info_user_fans", "sql", "database search error", `select count(*) from info_user_fans where followed_id = ${author_search_res[0].id}`);
+        
+        let is_follow = false;
+        if(user_info[0]){
+        let user_focus_res = await handleDB(res, "info_user_fans", "find", "database search error", `follower_id = ${user_info[0].id} and followed_id = ${author_search_res[0].id}`);
+            if(user_focus_res[0]){
+                is_follow = true;
+            }
+        }
 
         let data = {
 
@@ -72,9 +89,12 @@ router.get('/news_detail/:news_id', (req, res) => {
             newsData: newsResult[0],
             is_collection,
             commentList: comment_res,
-            user_thump_up
+            comment_id_list,
+            author_info: author_search_res[0],
+            author_article_count: author_article_count_res[0]['count(*)'],
+            author_fans_count: author_fans_count_res[0]['count(*)'],
+            is_follow
         }
-
 
         res.render("news/detail", data);
     })();
@@ -225,6 +245,46 @@ router.post('/news_detail/comment_like', (req, res) => {
 
 
     })();
+});
+
+router.post('/news_detail/followed_user', (req, res) => {
+
+    (async function () {
+        let user_info = await common.getUser(req, res);
+
+        if (!user_info[0]) {
+            res.send({ errno: "4101" });
+            return
+        }
+
+        let { action, user_id } = req.body;
+
+        if (!action || !user_id) {
+            res.send({ errmsg: "prams are not matching" });
+            return;
+        }
+
+        let author_search_res = await handleDB(res, "info_news", "find", "database search error", `user_id = ${user_id}`);
+
+        if (!author_search_res[0]) {
+            res.send({ errmsg: "author not exist" });
+            return;
+        }
+
+        if (action === "follow") {
+            await handleDB(res, "info_user_fans", "insert", "database insert error", { follower_id: user_info[0].id, followed_id: user_id });
+        }
+        else {
+            await handleDB(res, "info_user_fans", "delete", "database delete error", `follower_id = ${user_info[0].id} and followed_id = ${user_id}`);
+        }
+
+        res.send({ errno: "0", errmsg: "follow/unfollow successful" });
+
+    })();
+
+
+
+
 });
 
 

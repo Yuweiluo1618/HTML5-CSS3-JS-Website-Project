@@ -309,7 +309,7 @@ $(function(){
 
         // 关注当前新闻作者
     $(".focus").click(function () {
-        /*
+        
         var user_id = $(this).attr('data-userid')
         var params = {
             "action": "follow",
@@ -326,9 +326,9 @@ $(function(){
             success: function (resp) {
                 if (resp.errno == "0") {
                     // 关注成功
-                    var count = parseInt($(".follows b").news());
+                    var count = parseInt($(".follows b").html());
                     count++;
-                    $(".follows b").news(count + "")
+                    $(".follows b").html(count + "")
                     $(".focus").hide()
                     $(".focused").show()
                 }else if (resp.errno == "4101"){
@@ -340,12 +340,12 @@ $(function(){
                 }
             }
         })
-        */
+        
     })
 
     // 取消关注当前新闻作者
     $(".focused").click(function () {
-        /*
+        
         var user_id = $(this).attr('data-userid')
         var params = {
             "action": "unfollow",
@@ -362,9 +362,9 @@ $(function(){
             success: function (resp) {
                 if (resp.errno == "0") {
                     // 取消关注成功
-                    var count = parseInt($(".follows b").news());
+                    var count = parseInt($(".follows b").html());
                     count--;
-                    $(".follows b").news(count + "")
+                    $(".follows b").html(count + "")
                     $(".focus").show()
                     $(".focused").hide()
                 }else if (resp.errno == "4101"){
@@ -376,7 +376,7 @@ $(function(){
                 }
             }
         })
-        */
+        
     })
 })
 
