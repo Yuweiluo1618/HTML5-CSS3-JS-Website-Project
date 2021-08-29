@@ -13,6 +13,7 @@ $(function () {
         $(this).serializeArray().map(function (x) {
             params[x.name] = x.value;
         });
+        
         // 取到两次密码进行判断
         var new_password = params["new_password"];
         var new_password2 = params["new_password2"];
@@ -23,7 +24,7 @@ $(function () {
         }
 
         // TODO 修改密码
-        /*
+        
         $.ajax({
             url: "/user/pass_info",
             type: "post",
@@ -42,6 +43,6 @@ $(function () {
                 }
             }
         })
-        */
+        
     })
 })

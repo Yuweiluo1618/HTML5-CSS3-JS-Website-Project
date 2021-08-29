@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "scripts": {
+    "start": "node ./app.js"
+   },
   "dependencies": {
     "art-template": "^4.13.2",
     "cookie-parser": "^1.4.5",

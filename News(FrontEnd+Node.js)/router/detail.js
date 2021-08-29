@@ -83,7 +83,7 @@ router.get('/news_detail/:news_id', (req, res) => {
 
             user_info: user_info[0]?{
                 nick_name: user_info[0].nick_name,
-                avatar_url: user_info[0].avatar_url
+                avatar_url: user_info[0].avatar_url?user_info[0].avatar_url:"/news/images/person01.png"
             }:false,
             newsClicks: search_click,
             newsData: newsResult[0],
