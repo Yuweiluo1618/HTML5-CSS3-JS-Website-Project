@@ -37,6 +37,17 @@ async function getUser(req, res){
 
 }
 
+async function getUserInfo(req, res){
+    let user_info = await getUser(req, res);
+        
+    if(!user_info[0]){
+        res.redirect('/');
+        return;
+    }
+
+    return user_info;
+}
+
 async function abort404(req, res){
     let user_info = await getUser(req, res);
     let data = {
@@ -51,5 +62,6 @@ async function abort404(req, res){
 module.exports = {
     csrfProtect,
     getUser,
-    abort404
+    abort404,
+    getUserInfo
 }

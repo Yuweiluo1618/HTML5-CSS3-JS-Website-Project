@@ -2,6 +2,7 @@ const router = require('express').Router();
 const handleDB = require('../db/handleDB');
 const moment =  require("moment");
 const common = require('../utils/common');
+const constant = require('../utils/constant');
 require('../utils/filter');
 
 router.get('/news_detail/:news_id', (req, res) => {
@@ -54,7 +55,7 @@ router.get('/news_detail/:news_id', (req, res) => {
 
             comment_res[i].commenter = {
                 nick_name: commenter_search_res[0].nick_name,
-                avatar_url: commenter_search_res[0].avatar_url?commenter_search_res[0].avatar_url:"/news/images/worm.jpg"
+                avatar_url: commenter_search_res[0].avatar_url?(constant.FILE_NAME_PRE+commenter_search_res[0].avatar_url):"/news/images/worm.jpg"
             }
         }
 
@@ -79,11 +80,13 @@ router.get('/news_detail/:news_id', (req, res) => {
             }
         }
 
+        author_search_res[0].avatar_url =  author_search_res[0].avatar_url?(constant.FILE_NAME_PRE + author_search_res[0].avatar_url):"/news/images/person01.png";
+
         let data = {
 
             user_info: user_info[0]?{
                 nick_name: user_info[0].nick_name,
-                avatar_url: user_info[0].avatar_url?user_info[0].avatar_url:"/news/images/person01.png"
+                avatar_url: user_info[0].avatar_url?(constant.FILE_NAME_PRE+user_info[0].avatar_url):"/news/images/person01.png"
             }:false,
             newsClicks: search_click,
             newsData: newsResult[0],
@@ -185,7 +188,7 @@ router.post('/news_detail/news_comment', (req, res) => {
 
         let data = {
             user:{
-                avatar_url: user_info[0].avatar_url,
+                avatar_url: constant.FILE_NAME_PRE+user_info[0].avatar_url,
                 nick_name: user_info[0].nick_name
             },
             content: comment,

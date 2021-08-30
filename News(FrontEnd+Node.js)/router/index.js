@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const commen = require('../utils/common');
+const constant = require('../utils/constant');
 const handleDB = require('../db/handleDB');
 
 router.get("/", (req, res)=>{
@@ -16,7 +17,7 @@ router.get("/", (req, res)=>{
                 
                 user_info: user_info[0]?{
                     nick_name: user_info[0].nick_name,
-                    avatar_url: user_info[0].avatar_url?user_info[0].avatar_url:"/news/images/person01.png"
+                    avatar_url: user_info[0].avatar_url?(constant.FILE_NAME_PRE+user_info[0].avatar_url):"/news/images/person01.png"
                 }:false,
                 
                 category: search_cate,
