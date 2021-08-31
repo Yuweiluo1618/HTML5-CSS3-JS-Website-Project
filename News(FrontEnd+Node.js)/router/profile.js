@@ -8,6 +8,9 @@ const multer = require('multer');
 const fs = require('fs');
 const upload = multer({ dest: './News(FrontEnd+Node.js)/public/news/upload/avatar'});
 
+require('../utils/filter');
+
+
 router.get('/profile', (req, res) => {
 
     (async function(){
@@ -139,6 +142,41 @@ router.post('/user/pic_info', upload.single('avatar'), (req, res) => {
     })();
    
     
+});
+
+router.get('/user/collect_info', (req, res) => {
+    (async function(){
+        let user_info = await common.getUserInfo(req, res);
+        let {p = 1} = req.query;
+        let current_page = p;
+        
+        let per_page = 6;
+
+        let total_page_search_res = await handleDB(res, "info_user_collection", "sql", "database search error", `select count(*) from info_user_collection where user_id = ${user_info[0].id}`);
+
+        let totalPage = Math.ceil(total_page_search_res[0]['count(*)']/per_page);
+
+        let collection_search_res = await handleDB(res, "info_user_collection", "limit", "database search error", {
+            where: `user_id = ${user_info[0].id} order by create_time desc`,
+            number: p,
+            count: per_page
+        });
+
+        let collectionNewsList = [];
+        for(let i = 0; i < collection_search_res.length; i++){
+            let news_search_res = await handleDB(res, "info_news", "find", "database search error", `id = ${collection_search_res[i].news_id}`);
+            collectionNewsList.push(news_search_res[0]);
+            
+        }
+
+        let data = {
+            current_page,
+            totalPage,
+            collectionNewsList
+        }
+
+        res.render('news/user_collection', data);
+    })();
 });
 
 module.exports = router;
